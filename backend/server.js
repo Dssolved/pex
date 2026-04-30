@@ -1,16 +1,16 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const http = require('http');
-const express = require('express');
-const cors = require('cors');
+const http = require("http");
+const express = require("express");
+const cors = require("cors");
 
-const connectDB = require('./config/db');
-const { initWebSocket } = require('./ws/handler');
+const connectDB = require("./config/db");
+const { initWebSocket } = require("./ws/handler");
 
-const authRouter = require('./routes/auth');
-const stocksRouter = require('./routes/stocks');
-const portfolioRouter = require('./routes/portfolio');
-const tradesRouter = require('./routes/trades');
+const authRouter = require("./routes/auth");
+const stocksRouter = require("./routes/stocks");
+const portfolioRouter = require("./routes/portfolio");
+const tradesRouter = require("./routes/trades");
 
 const PORT = process.env.PORT || 4000;
 
@@ -19,22 +19,34 @@ connectDB();
 const app = express();
 
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://pexfrontend.vercel.app",
+  "https://pexfrontend-9e57coqll-dssolveds-projects.vercel.app",
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
 );
 
-app.use('/api/auth', authRouter);
-app.use('/api/stocks', stocksRouter);
-app.use('/api/portfolio', portfolioRouter);
-app.use('/api/trades', tradesRouter);
-
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+app.get("/health", (_req, res) => {
+  res.json({ status: "ok" });
 });
+
+app.use("/api/auth", authRouter);
+app.use("/api/stocks", stocksRouter);
+app.use("/api/portfolio", portfolioRouter);
+app.use("/api/trades", tradesRouter);
 
 const server = http.createServer(app);
 initWebSocket(server);
