@@ -18,35 +18,14 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = [
-  process.env.CLIENT_ORIGIN,
-  process.env.CLIENT_ORIGIN_PREVIEW,
-].filter(Boolean);
-
-const allowedOriginPatterns = [/^https:\/\/[a-z0-9-]+\.vercel\.app$/i];
-
-function isAllowedOrigin(origin) {
-  if (!origin) return true;
-  if (allowedOrigins.includes(origin)) return true;
-  return allowedOriginPatterns.some((pattern) => pattern.test(origin));
-}
-
-const corsOptions = {
-  origin(origin, callback) {
-    if (isAllowedOrigin(origin)) {
-      return callback(null, true);
-    }
-
-    return callback(new Error("Not allowed by CORS"));
-  },
-  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 204,
-};
-
 app.use(express.json());
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
