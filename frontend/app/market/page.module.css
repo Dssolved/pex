@@ -1,0 +1,268 @@
+.page {
+  min-height: 100vh;
+  padding: 28px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.small {
+  margin: 0 0 6px;
+  color: #69758d;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  margin: 0;
+  font-size: 34px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.online,
+.offline {
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.online {
+  color: #147a3d;
+  background: #e8f7ee;
+}
+
+.offline {
+  color: #b42318;
+  background: #fff0f0;
+}
+
+.error,
+.success {
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin: 0 0 14px;
+}
+
+.error {
+  color: #b42318;
+  background: #fff0f0;
+}
+
+.success {
+  color: #147a3d;
+  background: #e8f7ee;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.summaryCard,
+.panel,
+.stockCard {
+  background: #ffffff;
+  border: 1px solid #dfe5f2;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(25, 35, 60, 0.06);
+}
+
+.summaryCard {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summaryCard span,
+.summaryCard small,
+.muted,
+.owner {
+  color: #69758d;
+}
+
+.summaryCard strong {
+  font-size: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.panel {
+  padding: 20px;
+}
+
+.panel h2 {
+  margin: 0 0 8px;
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #cfd6e6;
+  border-radius: 10px;
+  padding: 0 10px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #1f4fd8;
+}
+
+.button,
+.lightButton,
+.ghostButton {
+  height: 40px;
+  border-radius: 10px;
+  border: 0;
+  padding: 0 14px;
+  font-weight: 700;
+}
+
+.button {
+  color: #ffffff;
+  background: #172033;
+}
+
+.lightButton {
+  color: #172033;
+  background: #e8efff;
+}
+
+.ghostButton {
+  color: #172033;
+  background: #ffffff;
+  border: 1px solid #cfd6e6;
+}
+
+.myStockBox {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f4f6fb;
+}
+
+.holdingsList {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.holdingRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4f6fb;
+}
+
+.holdingRow div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stockGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stockCard {
+  padding: 16px;
+}
+
+.stockTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.stockTop h3,
+.stockTop p,
+.owner,
+.muted {
+  margin: 0;
+}
+
+.stockTop h3 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.stockTop strong {
+  font-size: 22px;
+}
+
+.owner {
+  margin-bottom: 14px;
+}
+
+.inlineForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .page {
+    padding: 18px;
+  }
+
+  .header,
+  .panelHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summaryGrid,
+  .grid,
+  .stockGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .headerRight {
+    justify-content: space-between;
+  }
+}
