@@ -27,8 +27,6 @@ app.use(
   }),
 );
 
-app.options("*", cors());
-
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
