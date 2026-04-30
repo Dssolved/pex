@@ -18,14 +18,14 @@ connectDB();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
-app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+
+app.get("/", (_req, res) => {
+  res.json({
+    message: "PEX backend is running",
+  });
+});
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
