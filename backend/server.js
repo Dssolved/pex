@@ -18,22 +18,7 @@ connectDB();
 
 const app = express();
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (
-        !origin ||
-        !FRONTEND_URL ||
-        origin.replace(/\/$/, "") === FRONTEND_URL
-      ) {
-        return callback(null, true);
-      }
-      callback(new Error("Not allowed by CORS"));
-    },
-  }),
-);
-app.options("*", cors());
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (_req, res) => {
