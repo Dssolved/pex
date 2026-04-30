@@ -19,25 +19,15 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://pexfrontend.vercel.app",
-  "https://pexfrontend-9e57coqll-dssolveds-projects.vercel.app",
-];
-
 app.use(
   cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(new Error("Not allowed by CORS"));
-    },
-    methods: ["GET", "POST", "PATCH", "OPTIONS"],
+    origin: true,
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+app.options("*", cors());
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
